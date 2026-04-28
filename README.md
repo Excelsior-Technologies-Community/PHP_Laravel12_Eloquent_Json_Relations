@@ -436,4 +436,7 @@ PHP_Laravel12_Eloquent_Json_Relations/
 ---
 
 Your PHP_Laravel12_Eloquent_Json_Relations Project is now ready!
+<<<<<<< HEAD
 
+=======
+>>>>>>> development
