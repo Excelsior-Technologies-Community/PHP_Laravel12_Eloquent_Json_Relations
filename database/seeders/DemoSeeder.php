@@ -11,23 +11,26 @@ class DemoSeeder extends Seeder
 {
     public function run(): void
     {
-        // Create Posts
-        $post1 = Post::create([
-            'title' => 'Laravel 12 Guide',
-            'content' => 'Learning Laravel 12'
-        ]);
+       
+        $posts = [];
+        for ($i = 1; $i <= 15; $i++) {
+            $posts[] = Post::create([
+                'title' => 'Post Title #' . $i,
+                'content' => 'This is the content for post number ' . $i
+            ]);
+        }
 
-        $post2 = Post::create([
-            'title' => 'Eloquent JSON Relations',
-            'content' => 'Working with JSON columns'
-        ]);
-
-        // Create User with JSON relation
-        User::create([
-            'name' => 'Demo User',
-            'email' => 'demo@example.com',
-            'password' => Hash::make('password'), // safer for Laravel 12
-            'post_ids' => [$post1->id, $post2->id] // ensure proper JSON
-        ]);
+       
+        for ($i = 1; $i <= 5; $i++) {
+          
+            $randomPosts = collect($posts)->random(2)->pluck('id')->toArray();
+            
+            User::create([
+                'name' => 'Demo User ' . $i,
+                'email' => 'user' . $i . '@example.com',
+                'password' => Hash::make('password'),
+                'post_ids' => $randomPosts
+            ]);
+        }
     }
 }
